@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elegant Jewelry</title>
+  <style>
+    :root {
+      --bg: #bef0f7;
+      --text: #2b2b2b;
+      --card: #e6f3f7;
+      --accent: #5eb5b8;
+      --header: #7dd3f5;
+      --border: #0d89af;
+    }
+    body.dark {
+      --bg: #1e1e1e;
+      --text: #f2f2f2;
+      --card: #2a2a2a;
+      --header: #2a2a2a;
+      --border: #444;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      background: var(--header);
+      border-bottom: 1px solid var(--border);
+      padding: 15px 0;
+      text-align: center;
+    }
+
+    /* SEARCH & CONTROLS */
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px;
+      flex-wrap: wrap;
+    }
+    .controls input {
+      padding: 8px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      width: 200px;
+    }
+    .controls button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    /* --- YAHAN FIX HAI --- */
+    main {
+      display: grid;
+      /* Mobile par 2 columns lazmi banenge */
+      grid-template-columns: repeat(2, 1fr); 
+      gap: 10px;
+      padding: 10px;
+      max-width: 1200px;
+      margin: 20px auto;
+    }
+
+    /* Laptop par 4 columns ho jayenge */
+    @media (min-width: 768px) {
+      main {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card img {
+      width: 100%;
+      /* Mobile par height kam rakhi hai taake dono cards fit hon */
+      height: 120px; 
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 10px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-content h2 {
+      margin: 0;
+      font-size: 0.9rem; /* Chota font mobile ke liye */
+      color: var(--accent);
+    }
+
+    .card-content p {
+      font-size: 0.75rem;
+      margin: 5px 0;
+      line-height: 1.2;
+    }
+
+    .price {
+      font-weight: bold;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+    }
+
+    .buy {
+      display: block;
+      text-align: center;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      padding: 6px;
+      border-radius: 5px;
+      font-size: 0.75rem;
+    }
+
+    /* Slider Fix */
+    .slider {
+      width: 90%;
+      margin: 10px auto;
+      height: 150px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .slides { display: flex; width: 300%; height: 100%; animation: slide 14s infinite; }
+    .slides img { width: 100%; height: 100%; object-fit: cover; }
+    @keyframes slide {
+      0% { transform: translateX(0); }
+      33% { transform: translateX(-100%); }
+      66% { transform: translateX(-200%); }
+      100% { transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Elegant Jewelry</h1>
+  <div class="controls">
+    <input type="text" placeholder="Search..." onkeyup="searchItems(this.value)">
+    <button onclick="document.body.classList.toggle('dark')">Dark Mode</button>
+  </div>
+</header>
+
+<div class="slider">
+  <div class="slides">
+    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338" />
+    <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3" />
+    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908" />
+  </div>
+</div>
+
+<main id="shop">
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338" />
+    <div class="card-content">
+      <h2>Pearl Necklace</h2>
+      <p>Handcrafted gold.</p>
+      <div class="price">PKR 85,000</div>
+      <a class="buy" href="#">Buy Now</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3" />
+    <div class="card-content">
+      <h2>Diamond Watch</h2>
+      <p>Luxury time.</p>
+      <div class="price">PKR 145,000</div>
+      <a class="buy" href="#">Buy Now</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908" />
+    <div class="card-content">
+      <h2>Bracelet</h2>
+      <p>Daily wear.</p>
+      <div class="price">PKR 55,000</div>
+      <a class="buy" href="#">Buy Now</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq4EyIvdogxYVLwi_We6Nib5aJQmylkNGmmQ&s" />
+    <div class="card-content">
+      <h2>Gold Ring</h2>
+      <p>Snake design.</p>
+      <div class="price">PKR 120,000</div>
+      <a class="buy" href="#">Buy Now</a>
+    </div>
+  </div>
+</main>
+
+<script>
+  function searchItems(value) {
+    let filter = value.toLowerCase();
+    document.querySelectorAll('.card').forEach(card => {
+      card.style.display = card.innerText.toLowerCase().includes(filter) ? "flex" : "none";
+    });
+  }
+</script>
+
+</body>
+</html>
