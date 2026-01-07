@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Elegant Jewelry</title>
+  <title>Elegant Jewelry | Karachi</title>
   <style>
+    /* CSS Variables & Theme Setup */
     :root {
       --bg: #bef0f7;
       --text: #2b2b2b;
@@ -13,112 +14,174 @@
       --header: #7dd3f5;
       --border: #0d89af;
     }
+
     body.dark {
       --bg: #1e1e1e;
       --text: #f2f2f2;
       --card: #2a2a2a;
-      --header: #2a2a2a;
+      --header: #121212;
       --border: #444;
     }
 
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: var(--bg);
-      color: var(--text);
+    /* Reset & Base Styles */
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+      scroll-behavior: smooth;
     }
 
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background 0.3s;
+    }
+
+    /* Navbar & Header */
     header {
       background: var(--header);
       border-bottom: 1px solid var(--border);
       padding: 15px 0;
-      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
-    /* SEARCH & CONTROLS */
-    .controls {
+    .nav-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 15px;
+    }
+
+    .logo { font-size: 1.5rem; font-weight: bold; color: var(--text); }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      margin-left: 15px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .search-section {
+      text-align: center;
+      padding: 15px;
+      background: var(--header);
       display: flex;
       justify-content: center;
       gap: 10px;
-      padding: 10px;
-      flex-wrap: wrap;
     }
-    .controls input {
+
+    .search-section input {
+      padding: 10px 15px;
+      border-radius: 25px;
+      border: 1px solid var(--border);
+      width: 100%;
+      max-width: 400px;
+      outline: none;
+    }
+
+    .theme-btn {
       padding: 8px 12px;
       border-radius: 20px;
-      border: 1px solid var(--border);
-      width: 200px;
-    }
-    .controls button {
+      border: none;
       background: var(--accent);
       color: white;
-      border: none;
-      padding: 8px 15px;
-      border-radius: 20px;
       cursor: pointer;
     }
 
-    /* --- YAHAN FIX HAI --- */
-    main {
-      display: grid;
-      /* Mobile par 2 columns lazmi banenge */
-      grid-template-columns: repeat(2, 1fr); 
-      gap: 10px;
-      padding: 10px;
+    /* Slider Section */
+    .slider {
+      width: 95%;
       max-width: 1200px;
       margin: 20px auto;
+      height: 200px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
-    /* Laptop par 4 columns ho jayenge */
-    @media (min-width: 768px) {
-      main {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
-      }
+    .slides { display: flex; width: 300%; height: 100%; animation: slide 12s infinite; }
+    .slides img { width: 100%; height: 100%; object-fit: cover; }
+
+    @keyframes slide {
+      0%, 25% { transform: translateX(0); }
+      33%, 58% { transform: translateX(-100%); }
+      66%, 91% { transform: translateX(-200%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* Info Section */
+    .info-section {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      padding: 20px 15px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .info-box {
+      background: var(--card);
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      border-bottom: 3px solid var(--accent);
+    }
+
+    .info-box h3 { font-size: 1rem; margin-bottom: 5px; color: var(--accent); }
+    .info-box p { font-size: 0.8rem; }
+
+    /* --- PRODUCT GRID FIX --- */
+    main {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* Mobile par 2 cards */
+      gap: 15px;
+      padding: 15px;
+      max-width: 1200px;
+      margin: 30px auto;
     }
 
     .card {
       background: var(--card);
-      border-radius: 10px;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       display: flex;
       flex-direction: column;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
     }
+
+    .card:hover { transform: translateY(-5px); }
 
     .card img {
       width: 100%;
-      /* Mobile par height kam rakhi hai taake dono cards fit hon */
-      height: 120px; 
-      object-fit: cover;
+      height: 150px; /* Mobile height */
+      object-fit: cover; /* Image hide nahi hogi */
+      display: block;
     }
 
     .card-content {
-      padding: 10px;
+      padding: 12px;
       flex-grow: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
 
-    .card-content h2 {
-      margin: 0;
-      font-size: 0.9rem; /* Chota font mobile ke liye */
+    .card-content h2 { 
+      font-size: 1rem; 
+      margin-bottom: 8px; 
       color: var(--accent);
+      text-transform: capitalize;
     }
 
-    .card-content p {
-      font-size: 0.75rem;
-      margin: 5px 0;
-      line-height: 1.2;
-    }
-
-    .price {
-      font-weight: bold;
-      font-size: 0.85rem;
-      margin-bottom: 8px;
-    }
+    .price { font-weight: bold; font-size: 0.9rem; margin-bottom: 10px; }
 
     .buy {
       display: block;
@@ -126,145 +189,125 @@
       background: var(--accent);
       color: white;
       text-decoration: none;
-      padding: 6px;
-      border-radius: 5px;
-      font-size: 0.75rem;
+      padding: 8px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: bold;
     }
 
-    /* Slider Fix */
-    .slider {
-      width: 90%;
-      margin: 10px auto;
-      height: 150px;
-      border-radius: 10px;
-      overflow: hidden;
+    /* Responsiveness for Laptop */
+    @media (min-width: 768px) {
+      main { grid-template-columns: repeat(4, 1fr); gap: 25px; }
+      .info-section { grid-template-columns: repeat(4, 1fr); }
+      .card img { height: 220px; } /* Laptop par images bari dikhengi */
+      .slider { height: 400px; }
     }
-    .slides { display: flex; width: 300%; height: 100%; animation: slide 14s infinite; }
-    .slides img { width: 100%; height: 100%; object-fit: cover; }
-    @keyframes slide {
-      0% { transform: translateX(0); }
-      33% { transform: translateX(-100%); }
-      66% { transform: translateX(-200%); }
-      100% { transform: translateX(0); }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: var(--header);
+      margin-top: 50px;
+      border-top: 1px solid var(--border);
     }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>Elegant Jewelry</h1>
-  <div class="controls">
-    <input type="text" placeholder="Search..." onkeyup="searchItems(this.value)">
-    <button onclick="document.body.classList.toggle('dark')">Dark Mode</button>
+  <div class="nav-container">
+    <div class="logo">Elegant✨</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#shop">Shop</a>
+      <a href="#info">Info</a>
+    </nav>
   </div>
 </header>
 
+<div class="search-section">
+  <input type="text" placeholder="Search jewelry..." onkeyup="searchItems(this.value)">
+  <button class="theme-btn" onclick="document.body.classList.toggle('dark')">🌙</button>
+</div>
+
 <div class="slider">
   <div class="slides">
-    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338" />
-    <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3" />
-    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908" />
+    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338" alt="Slide 1">
+    <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3" alt="Slide 2">
+    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908" alt="Slide 3">
   </div>
 </div>
+
+<section class="info-section" id="info">
+  <div class="info-box">
+    <h3>🚚 Free Delivery</h3>
+    <p>All over Pakistan</p>
+  </div>
+  <div class="info-box">
+    <h3>💎 22K Gold</h3>
+    <p>Certified Quality</p>
+  </div>
+  <div class="info-box">
+    <h3>🔄 Easy Return</h3>
+    <p>7 Days Exchange</p>
+  </div>
+  <div class="info-box">
+    <h3>📞 WhatsApp</h3>
+    <p>24/7 Support</p>
+  </div>
+</section>
 
 <main id="shop">
   <div class="card">
     <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338" />
     <div class="card-content">
       <h2>Pearl Necklace</h2>
-      <p>Handcrafted gold.</p>
       <div class="price">PKR 85,000</div>
-      <a class="buy" href="#">Buy Now</a>
+      <a class="buy" href="https://wa.me/923001234567">Buy Now</a>
     </div>
   </div>
 
   <div class="card">
     <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3" />
     <div class="card-content">
-      <h2>Diamond Watch</h2>
-      <p>Luxury time.</p>
+      <h2>Diamond Set</h2>
       <div class="price">PKR 145,000</div>
-      <a class="buy" href="#">Buy Now</a>
+      <a class="buy" href="https://wa.me/923001234567">Buy Now</a>
     </div>
   </div>
 
   <div class="card">
     <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908" />
     <div class="card-content">
-      <h2>Bracelet</h2>
-      <p>Daily wear.</p>
+      <h2>Earrings</h2>
       <div class="price">PKR 55,000</div>
-      <a class="buy" href="#">Buy Now</a>
+      <a class="buy" href="https://wa.me/923001234567">Buy Now</a>
     </div>
   </div>
 
   <div class="card">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq4EyIvdogxYVLwi_We6Nib5aJQmylkNGmmQ&s" />
     <div class="card-content">
-      <h2>Gold Ring</h2>
-      <p>Snake design.</p>
+      <h2>Pendant</h2>
       <div class="price">PKR 120,000</div>
-      <a class="buy" href="#">Buy Now</a>
+      <a class="buy" href="https://wa.me/923001234567">Buy Now</a>
     </div>
   </div>
-
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3" />
-    <div class="card-content">
-      <h2>Diamond Watch</h2>
-      <p>Luxury time.</p>
-      <div class="price">PKR 145,000</div>
-      <a class="buy" href="#">Buy Now</a>
-    </div>
-  </div>
-
-
-  
-   <!-- Card 4 -->
-  <div class="card">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDsL5NJP3mtUSQ9pQn87nQwcqAyElN2qi3OO0PJdCmAw&s" />
-    <div class="card-content">
-      <h2>Watch</h2>
-      <p>Classic diamond ring for special moments.</p>
-      <div class="price">PKR 145,000</div>
-      <a class="buy" href="#contact">Buy Now</a>
-    </div>
-  </div>
-
- <!-- Card 5 -->
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908" />
-    <div class="card-content">
-      <h2>Bracelet</h2>
-      <p>Stylish bracelet for daily wear.</p>
-      <div class="price">PKR 55,000</div>
-      <a class="buy" href="#contact">Buy Now</a>
-    </div>
-  </div>
-
-
-  
- 
-
-
-
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908" />
-    <div class="card-content">
-      <h2>Bracelet</h2>
-      <p>Daily wear.</p>
-      <div class="price">PKR 55,000</div>
-      <a class="buy" href="#">Buy Now</a>
-    </div>
-  </div>
-
 </main>
+
+<footer>
+  <p>📍 Saddar, Karachi, Pakistan</p>
+  <p>📞 WhatsApp: 0300-1234567</p>
+  <p>© 2026 Elegant Jewelry Store</p>
+</footer>
 
 <script>
   function searchItems(value) {
     let filter = value.toLowerCase();
-    document.querySelectorAll('.card').forEach(card => {
-      card.style.display = card.innerText.toLowerCase().includes(filter) ? "flex" : "none";
+    let cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      let title = card.querySelector('h2').innerText.toLowerCase();
+      card.style.display = title.includes(filter) ? "flex" : "none";
     });
   }
 </script>
